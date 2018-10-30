@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../../favicon.ico" />
+
+<title>Home</title>
+
+<!-- Bootstrap core CSS -->
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}" />
+</head>
+
+<body>
+	<div class="container">
+		<h1>Bienvenido al reporte de movilidad urbano de Chile</h1>
+		
+<!-- <p>Welcome to <span th:text="${appName}">Our App</span></p> -->
+		<div class="row">
+  			<div th:each="cuadro, rowStat : ${cuadros}" 
+  			class="col-sm-6">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<p th:text="${cuadro.valor}">valor</p>
+						<p th:text="${cuadro.texto}">texto</p>
+						<p> <a th:href="@{detail(idCuadro=${cuadro.id})}">Ver <span th:text="${cuadro.nombre}">nombre</a></p>
+					</div>
+				</div>
+  			</div>
+<!-- 			<div class="col-sm-6" -->
+<!-- 				th:each="cuadro rowStat: ${cuadros}" -->
+<!-- 				th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'"> -->
+<!-- 				<div class="panel panel-default"> -->
+<!-- 					<div class="panel-body"> -->
+<!-- 						<p th:text="${cuadro.nombre}">nombre</p> -->
+<!-- 						<p th:text="${cuadro.texto}">texto</p> -->
+<!-- 						<p th:text="${cuadro.valor}">valor</p> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+		</div>
+	</div>
+	<!-- Bootstrap core JavaScript
+================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="../static/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+</body>
+</html>
