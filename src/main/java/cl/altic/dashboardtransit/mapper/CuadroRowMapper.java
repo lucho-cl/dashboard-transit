@@ -18,6 +18,8 @@ public class CuadroRowMapper implements RowMapper<Cuadro> {
 		cuadro.setNombre(rs.getString("vista"));
 		cuadro.setTexto(rs.getString("texto_valor"));
 		cuadro.setTooltip(rs.getString("texto_tooltip"));
+		cuadro.setBaseValor(rs.getString("base_de_datos_valor"));
+		cuadro.setQueryValor(rs.getString("query_valor"));
 		cuadro.setValor("test123");
 		
 		return cuadro;

@@ -23,13 +23,24 @@
 		
 <!-- <p>Welcome to <span th:text="${appName}">Our App</span></p> -->
 		<div class="row">
+		<form role="form" id="sendRegion" th:action=@{/reportes} method="post">
+			<div class="form-group">
+			  <label for="regionSelect">Seleccione una región:</label>
+			  <select class="form-control" id="regionSelect" name="regionSelect" onchange="submit()"> 
+			    <option th:each="region : ${regiones}" th:value="${region.id}" th:text="${region.nombre}" th:selected="${region.id==regionSeleccionada}">
+    </option>
+			  </select>
+			</div>
+			</form>
+		</div>
+		<div class="row">
   			<div th:each="cuadro, rowStat : ${cuadros}" 
   			class="col-sm-6">
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<p th:text="${cuadro.valor}">valor</p>
 						<p th:text="${cuadro.texto}">texto</p>
-						<p> <a th:href="@{detail(idCuadro=${cuadro.id})}">Ver <span th:text="${cuadro.nombre}">nombre</a></p>
+						<p> <a th:href="@{detail(idCuadro=${cuadro.id},idRegion=${regionSeleccionada})}">Ver <span th:text="${cuadro.nombre}">nombre</a></p>
 					</div>
 				</div>
   			</div>
@@ -53,5 +64,24 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="../static/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script>
+		function regionSelect() {
+		   //display the spinner
+// 		   $('#ajaxLoader').show();
+		 
+		   //first, let's get rid of the default "SELECT" option if it exists
+		   var defaultOption = $("#regionSelect option[value='default']");
+		   if (defaultOption) defaultOption.remove();
+		 
+		   //get the selected id
+		   var idRegion = $('#regionSelect').val();
+		 
+		   //get the url for the ajax call
+		   var url = "./home?idRegion=" + idRegion;
+		 
+		   //do the ajax call
+		   $.get(url, populateEmployeeInfo);
+		}
+	</script>
 </body>
 </html>

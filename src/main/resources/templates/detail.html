@@ -31,9 +31,9 @@
 				<li>
 					<p>Region Metropolitana</p>
 				</li>
-				<p>Inicio</p>
+				<p><a th:href="@{/}">Inicio</a></p>
 				<li th:each="cuadro, rowStat : ${cuadros}"><a
-					th:href="@{detail(idCuadro=${cuadro.id})}"><span
+					th:href="@{detail(idCuadro=${cuadro.id},idRegion=${regionSeleccionada})}"><span
 						th:text="${cuadro.nombre}"></span></a></li>
 			</ul>
 		</div>

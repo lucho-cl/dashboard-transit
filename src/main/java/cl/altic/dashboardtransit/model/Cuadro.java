@@ -8,12 +8,14 @@ public class Cuadro {
 	private String texto;
 	private String valor;
 	private String tooltip;
+	private String baseValor;
+	private String queryValor;
 	
 	public Cuadro() {
 		super();
 	}
-
-	public Cuadro(Integer id, Integer region, String nombre, String texto, String valor, String tooltip) {
+	public Cuadro(Integer id, Integer region, String nombre, String texto, String valor, String tooltip,
+			String baseValor, String queryValor) {
 		super();
 		this.id = id;
 		this.region = region;
@@ -21,8 +23,9 @@ public class Cuadro {
 		this.texto = texto;
 		this.valor = valor;
 		this.tooltip = tooltip;
+		this.baseValor = baseValor;
+		this.queryValor = queryValor;
 	}
-
 	public Integer getId() {
 		return id;
 	}
@@ -58,6 +61,18 @@ public class Cuadro {
 	}
 	public void setTooltip(String tooltip) {
 		this.tooltip = tooltip;
+	}
+	public String getBaseValor() {
+		return baseValor;
+	}
+	public void setBaseValor(String baseValor) {
+		this.baseValor = baseValor;
+	}
+	public String getQueryValor() {
+		return queryValor;
+	}
+	public void setQueryValor(String queryValor) {
+		this.queryValor = queryValor;
 	}
 	
 	
