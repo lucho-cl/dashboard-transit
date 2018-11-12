@@ -29,7 +29,7 @@ public class DashboardController {
 	@Value("${spring.application.name}")
 	String appName;
 	
-	private List<Region> regiones = new ArrayList<Region>(); 
+	private List<Region> regiones = new ArrayList<Region>();
 	
 	private List<Cuadro> cuadros = new ArrayList<Cuadro>();
 	private Cuadro cuadro = new Cuadro();
@@ -37,26 +37,28 @@ public class DashboardController {
 	@PostConstruct
     public void init() throws Exception {
 		cuadro.setRegion(REGION_INICIAL);;
-		regiones.add(new Region(13, "Metropolitanta"));
-		regiones.add(new Region(15, "Arica y Parinacota"));
-		regiones.add(new Region(1, "Tarapacá"));
-		regiones.add(new Region(2, "Antofagasta"));
-//		regiones.add(new Region(3, "Atacama"));
-		regiones.add(new Region(4, "Coquimbo"));
-		regiones.add(new Region(5, "Valparaíso"));
-		regiones.add(new Region(6, "Del Libertador General Bernardo O’Higgins"));
-		regiones.add(new Region(7, "Maule"));
-		regiones.add(new Region(8, "Bío Bío"));
-		regiones.add(new Region(9, "Araucanía"));
-		regiones.add(new Region(14, "Los Ríos"));
-		regiones.add(new Region(10, "Los Lagos"));
-//		cuadrosList.add(new Cuadro(1,"Encuesta Origen Destino", "Viajes diarios en la región", "132k", "tooltip"));
-//		cuadrosList.add(new Cuadro(2,"Demanda Transporte Publico", "Promedio de transbordos en Transantiago", "1,87", "tooltip"));
-//		cuadrosList.add(new Cuadro(3,"Oferta Transporte Publico", "Distintos servicios de metro y buses en Santiago", "17", "tooltip"));
-//		cuadrosList.add(new Cuadro(4,"Performance Transporte Publico", "Velocidad promedio de buses", "54km/h", "tooltip"));
-//		cuadrosList.add(new Cuadro(5,"Transporte Privado", "Tasa de motorización", "59%", "tooltip"));
-//		cuadrosList.add(new Cuadro(6,"Transporte No Motorizado", "Kilómetros de ciclovías", "10,4km", "tooltip"));
-//		cuadrosList.add(new Cuadro(7,"Seguridad Vial", "Fallecidos en el año 2017", "654", "tooltip"));
+//		regiones.add(new Region(13, "Metropolitanta"));
+//		regiones.add(new Region(15, "Arica y Parinacota"));
+//		regiones.add(new Region(1, "Tarapacá"));
+//		regiones.add(new Region(2, "Antofagasta"));
+////		regiones.add(new Region(3, "Atacama"));
+//		regiones.add(new Region(4, "Coquimbo"));
+//		regiones.add(new Region(5, "Valparaíso"));
+//		regiones.add(new Region(6, "Del Libertador General Bernardo O’Higgins"));
+//		regiones.add(new Region(7, "Maule"));
+//		regiones.add(new Region(8, "Bío Bío"));
+//		regiones.add(new Region(9, "Araucanía"));
+//		regiones.add(new Region(14, "Los Ríos"));
+//		regiones.add(new Region(10, "Los Lagos"));
+		
+		
+		cuadros.add(new Cuadro(1,"Encuesta Origen Destino", "Viajes diarios en la región", "132k", "tooltip"));
+		cuadros.add(new Cuadro(2,"Demanda Transporte Publico", "Promedio de transbordos en Transantiago", "1,87", "tooltip"));
+		cuadros.add(new Cuadro(3,"Oferta Transporte Publico", "Distintos servicios de metro y buses en Santiago", "17", "tooltip"));
+		cuadros.add(new Cuadro(4,"Performance Transporte Publico", "Velocidad promedio de buses", "54km/h", "tooltip"));
+		cuadros.add(new Cuadro(5,"Transporte Privado", "Tasa de motorización", "59%", "tooltip"));
+		cuadros.add(new Cuadro(6,"Transporte No Motorizado", "Kilómetros de ciclovías", "10,4km", "tooltip"));
+		cuadros.add(new Cuadro(7,"Seguridad Vial", "Fallecidos en el año 2017", "654", "tooltip"));
 	}
 	
 	@GetMapping("/")
@@ -66,11 +68,11 @@ public class DashboardController {
 		}else {
 			cuadro.setRegion(Integer.parseInt(idRegion));
 		}
-		cuadros = datosComunesService.getCuadrosByRegion(cuadro);
+//		cuadros = datosComunesService.getCuadrosByRegion(cuadro);
 		model.addAttribute("appName", appName);
 		model.addAttribute("regionSeleccionada", cuadro.getRegion());
-		model.addAttribute("regiones", regiones);
-		model.addAttribute("cuadros", cuadros);
+//		model.addAttribute("regiones", regiones);
+//		model.addAttribute("cuadros", cuadros);
 		return "home";
 	}
 	

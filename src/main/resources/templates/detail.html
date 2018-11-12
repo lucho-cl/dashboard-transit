@@ -29,9 +29,11 @@
 			</div>
 			<ul>
 				<li>
-					<p>Region Metropolitana</p>
+			  <select class="form-control" id="regionSelect" name="regionSelect" ></select> 
 				</li>
+				<li>
 				<p><a th:href="@{/}">Inicio</a></p>
+				</li>
 				<li th:each="cuadro, rowStat : ${cuadros}"><a
 					th:href="@{detail(idCuadro=${cuadro.id},idRegion=${regionSeleccionada})}"><span
 						th:text="${cuadro.nombre}"></span></a></li>
@@ -55,5 +57,7 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="../static/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	
+	<script src="/js/dashboard-detail.js"></script>
 </body>
 </html>

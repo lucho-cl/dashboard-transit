@@ -11,8 +11,13 @@ public class Cuadro {
 	private String baseValor;
 	private String queryValor;
 	
-	public Cuadro() {
+	public Cuadro(int id, String nombre, String texto, String valor, String tooltip) {
 		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.texto = texto;
+		this.valor = valor;
+		this.tooltip = tooltip;
 	}
 	public Cuadro(Integer id, Integer region, String nombre, String texto, String valor, String tooltip,
 			String baseValor, String queryValor) {
@@ -25,6 +30,9 @@ public class Cuadro {
 		this.tooltip = tooltip;
 		this.baseValor = baseValor;
 		this.queryValor = queryValor;
+	}
+	public Cuadro() {
+		super();
 	}
 	public Integer getId() {
 		return id;
