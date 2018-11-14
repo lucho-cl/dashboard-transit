@@ -28,12 +28,14 @@
 				<h3>LOGO UC</h3>
 			</div>
 			<ul>
-				<li>
-				<input id="regionSeleccionada" type="hidden" th:value="${regionSeleccionada}">
-			  <select class="form-control" id="regionSelect" name="regionSelect" ></select> 
+				<li><input id="regionSeleccionada" type="hidden"
+					th:value="${regionSeleccionada}"> <select
+					class="form-control" id="regionSelect" name="regionSelect"></select>
 				</li>
 				<li>
-				<p><a th:href="@{/}">Inicio</a></p>
+					<p>
+						<a th:href="@{/}">Inicio</a>
+					</p>
 				</li>
 				<li th:each="cuadro, rowStat : ${cuadros}"><a
 					th:href="@{detail(idCuadro=${cuadro.id},idRegion=${regionSeleccionada})}"><span
@@ -43,11 +45,12 @@
 		<div class="content">
 			<div class="container">
 				<h1>
-					Estas viendo <span th:text="${name}">un detalle
+					Estás viendo <span th:text="${name}">un detalle 
 				</h1>
-				<p th:text="'Estas viendo ' + ${name}" />
+				<p th:text="'Estás viendo ' + ${name}" />
 				<!--   		<div th:insert="graphs :: #copy-section}"></div> -->
-				<div th:insert="graphs :: ${graphs}"></div>
+				<div th:insert="graphs :: ${graphs}(help1=${help1},help2=${help2},help3=${help3},help4=${help4},help5=${help5})">
+				</div>
 			</div>
 		</div>
 	</div>
@@ -58,7 +61,7 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="../static/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	
+
 	<script src="/js/dashboard-detail.js"></script>
 </body>
 </html>

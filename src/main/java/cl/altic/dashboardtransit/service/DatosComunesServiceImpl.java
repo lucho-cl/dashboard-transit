@@ -18,4 +18,9 @@ public class DatosComunesServiceImpl implements DatosComunesService {
 		List<Cuadro> lista = datosComunesDao.getCuadrosByRegion(cuadro);
 		return lista ;
 	}
+
+	@Override
+	public List<String> getTextosAyuda(int idRegion, int idVista) {
+		return datosComunesDao.getTextosAyuda(idRegion, idVista);
+	}
 }

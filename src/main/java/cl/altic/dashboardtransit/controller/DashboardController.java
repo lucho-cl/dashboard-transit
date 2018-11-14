@@ -1,6 +1,7 @@
 package cl.altic.dashboardtransit.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -116,6 +117,10 @@ public class DashboardController {
 		model.addAttribute("regionSeleccionada", idRegion);
 //        valor que utilizo para seleccionar los graficos q se moestrarán
         model.addAttribute("graphs", "div.graph_"+idRegion+"_"+selected.getId());
+        List<String> textosAyuda = datosComunesService.getTextosAyuda(Integer.valueOf(idRegion), Integer.valueOf(idCuadro));
+        for (int i = 0; i < textosAyuda.size(); i++) {
+        	model.addAttribute("help"+(i+1), textosAyuda.get(i));
+		}
         return "detail";
     }
 }

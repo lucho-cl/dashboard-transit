@@ -1,5 +1,6 @@
 package cl.altic.dashboardtransit.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import cl.altic.dashboardtransit.mapper.CuadroRowMapper;
+import cl.altic.dashboardtransit.mapper.CuadroSVRowMapper;
 import cl.altic.dashboardtransit.model.Cuadro;
 
 @Repository
@@ -86,56 +88,56 @@ public class DatosComunesDaoImpl implements DatosComunesDao {
 			logger.info("consultando en: "+baseValor);
 			logger.info("query: "+queryValor);
 			try {
-			switch (baseValor) {
-			case "eod_antofagasta_2010":
-				valor = eod_antofagasta_2010Jdbc.queryForObject(queryValor, String.class);
-				break;
-			case "eod_gran_concepcion_2015":
-				valor = eod_gran_concepcion_2015Jdbc.queryForObject(queryValor, String.class);
-				break;
-			case "eod_gran_valparaiso_2014":
-				valor = eod_gran_valparaiso_2014Jdbc.queryForObject(queryValor, String.class);
-				break;
-			case "eod_iquique_alto_hospicio_2010":
-				valor = eod_iquique_alto_hospicio_2010Jdbc.queryForObject(queryValor, String.class);
-				break;
-			case "eod_la_serena_coquimbo_2010":
-				valor = eod_la_serena_coquimbo_2010Jdbc.queryForObject(queryValor, String.class);
-				break;
-			case "eod_puerto_montt_2014":
-				valor = eod_puerto_montt_2014Jdbc.queryForObject(queryValor, String.class);
-				break;
-			case "eod_santiago_2003":
-				valor = eod_santiago_2003Jdbc.queryForObject(queryValor, String.class);
-				break;
-			case "eod_santiago_2012":
-				valor = eod_santiago_2012Jdbc.queryForObject(queryValor, String.class);
-				break;
-			case "eod_temuco_2013":
-				valor = eod_temuco_2013Jdbc.queryForObject(queryValor, String.class);
-				break;
-			case "eod_valdivia_2013":
-				valor = eod_valdivia_2013Jdbc.queryForObject(queryValor, String.class);
-				break;
-			case "gtfs_santiago":
-				valor = gtfs_santiagoJdbc.queryForObject(queryValor, String.class);
-				break;
-			case "seguridad_vial":
-				valor = seguridad_vialJdbc.queryForObject(queryValor, String.class);
-				break;
-			case "transporte_privado":
-				valor = transporte_privadoJdbc.queryForObject(queryValor, String.class);
-				break;
-			case "transporte_publico_santiago":
-				valor = transporte_publico_santiagoJdbc.queryForObject(queryValor, String.class);
-				break;
-			case "bicicleta":
-				valor = bicicletaJdbc.queryForObject(queryValor, String.class);
-				break;
-			default:
-				valor = "";
-				break;
-			}
+				switch (baseValor) {
+				case "eod_antofagasta_2010":
+					valor = eod_antofagasta_2010Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "eod_gran_concepcion_2015":
+					valor = eod_gran_concepcion_2015Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "eod_gran_valparaiso_2014":
+					valor = eod_gran_valparaiso_2014Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "eod_iquique_alto_hospicio_2010":
+					valor = eod_iquique_alto_hospicio_2010Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "eod_la_serena_coquimbo_2010":
+					valor = eod_la_serena_coquimbo_2010Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "eod_puerto_montt_2014":
+					valor = eod_puerto_montt_2014Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "eod_santiago_2003":
+					valor = eod_santiago_2003Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "eod_santiago_2012":
+					valor = eod_santiago_2012Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "eod_temuco_2013":
+					valor = eod_temuco_2013Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "eod_valdivia_2013":
+					valor = eod_valdivia_2013Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "gtfs_santiago":
+					valor = gtfs_santiagoJdbc.queryForObject(queryValor, String.class);
+					break;
+				case "seguridad_vial":
+					valor = seguridad_vialJdbc.queryForObject(queryValor, String.class);
+					break;
+				case "transporte_privado":
+					valor = transporte_privadoJdbc.queryForObject(queryValor, String.class);
+					break;
+				case "transporte_publico_santiago":
+					valor = transporte_publico_santiagoJdbc.queryForObject(queryValor, String.class);
+					break;
+				case "bicicleta":
+					valor = bicicletaJdbc.queryForObject(queryValor, String.class);
+					break;
+				default:
+					valor = "";
+					break;
+				}
 			}catch(Exception e){
 				valor = "";
 				logger.error("ERROR: "+e.getMessage());
@@ -146,4 +148,86 @@ public class DatosComunesDaoImpl implements DatosComunesDao {
 
 		return lista;
 	}
+	
+	public List<String> getTextosAyuda(int idRegion, int idVista) {
+		List<Cuadro> lista = null;
+		List<String> textos = new ArrayList<String>();
+		StringBuilder qry = new StringBuilder("SELECT vista_id, dato, dato_id, region_id, ");
+		qry.append("base_de_datos_valor, query_valor, texto_valor, texto_tooltip ");
+		qry.append("FROM public.datos_otras_vistas ");
+		qry.append("WHERE region_id = ? ");
+		qry.append("AND vista_id = ? ");
+		qry.append(";");
+
+		lista = jdbcTemplate.query(qry.toString(), new Object[] { idRegion, idVista }, new CuadroSVRowMapper());
+
+		// itero para obtener el detalle a mostrar en cada cuadro
+		for (Cuadro cuadro2 : lista) {
+			String baseValor = cuadro2.getBaseValor();
+			String queryValor = cuadro2.getQueryValor();
+			String valor = null;
+//			logger.info("Cuadro: " + cuadro2.getNombre());
+			logger.info("consultando en: " + baseValor);
+			logger.info("query: " + queryValor);
+			try {
+				switch (baseValor) {
+				case "eod_antofagasta_2010":
+					valor = eod_antofagasta_2010Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "eod_gran_concepcion_2015":
+					valor = eod_gran_concepcion_2015Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "eod_gran_valparaiso_2014":
+					valor = eod_gran_valparaiso_2014Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "eod_iquique_alto_hospicio_2010":
+					valor = eod_iquique_alto_hospicio_2010Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "eod_la_serena_coquimbo_2010":
+					valor = eod_la_serena_coquimbo_2010Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "eod_puerto_montt_2014":
+					valor = eod_puerto_montt_2014Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "eod_santiago_2003":
+					valor = eod_santiago_2003Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "eod_santiago_2012":
+					valor = eod_santiago_2012Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "eod_temuco_2013":
+					valor = eod_temuco_2013Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "eod_valdivia_2013":
+					valor = eod_valdivia_2013Jdbc.queryForObject(queryValor, String.class);
+					break;
+				case "gtfs_santiago":
+					valor = gtfs_santiagoJdbc.queryForObject(queryValor, String.class);
+					break;
+				case "seguridad_vial":
+					valor = seguridad_vialJdbc.queryForObject(queryValor, String.class);
+					break;
+				case "transporte_privado":
+					valor = transporte_privadoJdbc.queryForObject(queryValor, String.class);
+					break;
+				case "transporte_publico_santiago":
+					valor = transporte_publico_santiagoJdbc.queryForObject(queryValor, String.class);
+					break;
+				case "bicicleta":
+					valor = bicicletaJdbc.queryForObject(queryValor, String.class);
+					break;
+				default:
+					valor = "";
+					break;
+				}
+			} catch (Exception e) {
+				valor = "";
+				logger.error("ERROR: " + e.getMessage());
+			}
+			logger.info("Valor obtenido: " + valor);
+			textos.add(valor);
+		}
+		return textos;
+	}
+	
 }
