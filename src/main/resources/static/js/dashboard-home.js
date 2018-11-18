@@ -57,11 +57,26 @@ function getReportes() {
 			$.each(data.result, function(i, cuadro) {
 				// armar cada cuadro/reporte
 				reportes += '<div class="col-sm-6">';
-				reportes += '<p>' + cuadro.valor + '</p>';
-				reportes += '<p>' + cuadro.texto + '</p>';
-				reportes += '<p> <a href="/detail?idCuadro=' + cuadro.id
+				reportes += '<div class="caja">';
+				reportes += '<div class="row" style="height: 60%;">';
+				reportes += '<div class="col-xs-6 cuadro-1">';
+				reportes += '<section>' + cuadro.valor + '</section>';
+				reportes += '</div>';
+				reportes += '<div class="col-xs-6 cuadro-2">';
+				reportes += '<section>' + cuadro.texto + '</section>';
+				reportes += '</div>';
+				reportes += '</div>';
+				reportes += '<div class="row" style="height: 40%;">';
+				reportes += '<div class="col-xs-2 cuadro-3">';
+				reportes += '<section>dibujo</section>';
+				reportes += '</div>';
+				reportes += '<div class="col-xs-10 cuadro-4">';
+				reportes += '<section> <a href="/detail?idCuadro=' + cuadro.id
 						+ '&idRegion=' + cuadro.region + '">Ver '
-						+ cuadro.nombre + '</a></p>';
+						+ cuadro.nombre + '></a></section>';
+				reportes += '</div>';
+				reportes += '</div>';
+				reportes += '</div>';
 				reportes += '</div>';
 
 			});
