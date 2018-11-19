@@ -30,18 +30,18 @@
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#">LOGO UC</a>
 			</div>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">INGENIERIA</a></li>
-				<li><a href="#">UNIVERSIDAD</a></li>
-				<li><a href="#">PORTAL UC</a></li>
-				<li><a href="#">CORREO</a></li>
+			<ul class="nav justify-content-end">
+				<li class="nav-item"><a class="nav-link" href="#">INGENIERIA</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">UNIVERSIDAD</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">PORTAL UC</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">CORREO</a></li>
 			</ul>
 		</div>
 	</nav>
 
 	<!-- TITULO -parte morada con fondo raro -->
 	<div class="container-fluid content-tittle">
-		<div>
+		<div style="padding-bottom: 60px;">
 			<div></div>
 			<div style="margin-bottom: 30px;" class="text-left">
 				<div class="med">BIENVENIDO AL</div>
@@ -57,52 +57,54 @@
 	<div class="container-fluid content-home">
 
 		<!-- <p>Welcome to <span th:text="${appName}">Our App</span></p> -->
-		<!-- 		<div class="row"> -->
-		<!-- 		<div class="row content"> -->
+		<div class="row">
+			<!-- 		<div class="row content"> -->
 
-		<div class="col-xs-1"></div>
+			<div class="col-1"></div>
 
-		<div class="col-xs-10">
-			<!-- 		<form role="form" id="sendRegion" th:action=@{/reportes} method="post"> -->
-			<div class="row">
-				<div class="col-sm-12 caja-select">
-					<label for="regionSelect" class="col-sm-8">Selecciona tu
-						región para comenzar a explorar la informacion</label> <select
-						class="col-sm-4" id="regionSelect" name="regionSelect">
-						<!-- 			    <option th:each="region : ${regiones}" th:value="${region.id}" th:text="${region.nombre}" th:selected="${region.id==regionSeleccionada}"></option> -->
-					</select>
+			<div class="col-10">
+				<!-- 		<form role="form" id="sendRegion" th:action=@{/reportes} method="post"> -->
+				<div id="select" class="row">
+					<div class="col-sm-12 caja-select">
+						<div class="row form-group">
+							<label for="regionSelect" class="col-8">Selecciona tu
+								región para comenzar a explorar la informacion</label> <select
+								class="col-4 form-control" id="regionSelect" name="regionSelect">
+								<!-- 			    <option th:each="region : ${regiones}" th:value="${region.id}" th:text="${region.nombre}" th:selected="${region.id==regionSeleccionada}"></option> -->
+							</select>
+						</div>
+					</div>
+				</div>
+				<!-- 			</form> -->
+				<!-- 			</div> -->
+				<div id="reportes" class="row">
+					<!--   			<div th:each="cuadro, rowStat : ${cuadros}" class="col-sm-6"> -->
+					<!-- 				<div class="panel panel-default"> -->
+					<!-- 					<div class="panel-body"> -->
+					<!-- 						<p th:text="${cuadro.valor}">valor</p> -->
+					<!-- 						<p th:text="${cuadro.texto}">texto</p> -->
+					<!-- 						<p> <a th:href="@{detail(idCuadro=${cuadro.id},idRegion=${regionSeleccionada})}">Ver <span th:text="${cuadro.nombre}">nombre</a></p> -->
+					<!-- 					</div> -->
+					<!-- 				</div> -->
+					<!--   			</div> -->
+
+
+					<!-- 			<div class="col-sm-6" -->
+					<!-- 				th:each="cuadro rowStat: ${cuadros}" -->
+					<!-- 				th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'"> -->
+					<!-- 				<div class="panel panel-default"> -->
+					<!-- 					<div class="panel-body"> -->
+					<!-- 						<p th:text="${cuadro.nombre}">nombre</p> -->
+					<!-- 						<p th:text="${cuadro.texto}">texto</p> -->
+					<!-- 						<p th:text="${cuadro.valor}">valor</p> -->
+					<!-- 					</div> -->
+					<!-- 				</div> -->
+					<!-- 			</div> -->
 				</div>
 			</div>
-			<!-- 			</form> -->
-			<!-- 			</div> -->
-			<div id="reportes" class="row">
-				<!--   			<div th:each="cuadro, rowStat : ${cuadros}" class="col-sm-6"> -->
-				<!-- 				<div class="panel panel-default"> -->
-				<!-- 					<div class="panel-body"> -->
-				<!-- 						<p th:text="${cuadro.valor}">valor</p> -->
-				<!-- 						<p th:text="${cuadro.texto}">texto</p> -->
-				<!-- 						<p> <a th:href="@{detail(idCuadro=${cuadro.id},idRegion=${regionSeleccionada})}">Ver <span th:text="${cuadro.nombre}">nombre</a></p> -->
-				<!-- 					</div> -->
-				<!-- 				</div> -->
-				<!--   			</div> -->
 
-
-				<!-- 			<div class="col-sm-6" -->
-				<!-- 				th:each="cuadro rowStat: ${cuadros}" -->
-				<!-- 				th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'"> -->
-				<!-- 				<div class="panel panel-default"> -->
-				<!-- 					<div class="panel-body"> -->
-				<!-- 						<p th:text="${cuadro.nombre}">nombre</p> -->
-				<!-- 						<p th:text="${cuadro.texto}">texto</p> -->
-				<!-- 						<p th:text="${cuadro.valor}">valor</p> -->
-				<!-- 					</div> -->
-				<!-- 				</div> -->
-				<!-- 			</div> -->
-			</div>
+			<div class="col-1"></div>
 		</div>
-
-		<div class="col-xs-1"></div>
-		<!-- 		</div> -->
 	</div>
 
 	<footer class="container-fluid content-footer">
@@ -113,11 +115,13 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 
 	<!-- 	<script th:href="@{/js/bootstrap.js}"></script> -->
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-<!-- 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" -->
-<!-- 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" -->
-<!-- 		crossorigin="anonymous"></script> -->
+	<!-- 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" -->
+	<!-- 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" -->
+	<!-- 		crossorigin="anonymous"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
 		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"

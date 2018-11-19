@@ -13,19 +13,37 @@
 <title>Home</title>
 
 <!-- Bootstrap core CSS -->
-<link href="../static/css/bootstrap.css" rel="stylesheet"
-	th:href="@{/css/bootstrap.css}" />
+<!-- <link href="../static/css/bootstrap.css" rel="stylesheet" -->
+<!-- 	th:href="@{/css/bootstrap.css}" /> -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
 <link href="../static/css/dashboard-transit.css" rel="stylesheet"
 	th:href="@{/css/dashboard-transit.css}" />
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
+	<nav class="navbar menu-uc-superior fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">LOGO UC</a>
+			</div>
+			<ul class="nav justify-content-end">
+				<li class="nav-item"><a class="nav-link" href="#">INGENIERIA</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">UNIVERSIDAD</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">PORTAL UC</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">CORREO</a></li>
+			</ul>
+		</div>
+	</nav>
 
 	<div id="wrapper">
 		<div class="sidebar">
 
 			<div class="sidebar-header">
-				<h3>LOGO UC</h3>
+				<!-- 				<h3>LOGO UC</h3> -->
 			</div>
 			<ul>
 				<li><input id="regionSeleccionada" type="hidden"
@@ -33,9 +51,7 @@
 					class="form-control" id="regionSelect" name="regionSelect"></select>
 				</li>
 				<li>
-					<p>
-						<a th:href="@{/}">Inicio</a>
-					</p>
+						<a th:href="@{/}"><span  class="fa fa-home"> </span>Inicio</a>
 				</li>
 				<li th:each="cuadro, rowStat : ${cuadros}"><a
 					th:href="@{detail(idCuadro=${cuadro.id},idRegion=${regionSeleccionada})}"><span
@@ -43,23 +59,35 @@
 			</ul>
 		</div>
 		<div class="content">
-			<div class="container">
-				<h1>
-					Estás viendo <span th:text="${name}">un detalle 
-				</h1>
-				<p th:text="'Estás viendo ' + ${name}" />
-				<!--   		<div th:insert="graphs :: #copy-section}"></div> -->
-				<div th:insert="graphs :: ${graphs}(help1=${help1},help2=${help2},help3=${help3},help4=${help4},help5=${help5})">
+			<!-- 			<div class="container"> -->
+<!-- 			<div class="row"> -->
+				<div class="page-header">
+					<h1>REPORTE DE MOVILIDAD</h1>
 				</div>
+<!-- 			</div> -->
+<!-- 			<div class="row"> -->
+			<h3 th:text="${name}"></h3>
+			<!-- 				<p th:text="'Estás viendo ' + ${name}" /> -->
+			<!--   		<div th:insert="graphs :: #copy-section}"></div> -->
+<!-- 			</div> -->
+<!-- 			<div class="row"> -->
+			<div
+				th:insert="graphs :: ${graphs}(help1=${help1},help2=${help2},help3=${help3},help4=${help4},help5=${help5})">
 			</div>
+<!-- 			</div> -->
+			<!-- 			</div> -->
 		</div>
 	</div>
 	<!-- Bootstrap core JavaScript
 ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="../static/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 
 	<script src="/js/dashboard-detail.js"></script>
