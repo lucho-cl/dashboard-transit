@@ -52,14 +52,13 @@ public class DashboardController {
 //		regiones.add(new Region(14, "Los Ríos"));
 //		regiones.add(new Region(10, "Los Lagos"));
 		
-		
-		cuadros.add(new Cuadro(1,"Encuesta Origen Destino", "Viajes diarios en la región", "132k", "tooltip"));
-		cuadros.add(new Cuadro(2,"Demanda Transporte Publico", "Promedio de transbordos en Transantiago", "1,87", "tooltip"));
-		cuadros.add(new Cuadro(3,"Oferta Transporte Publico", "Distintos servicios de metro y buses en Santiago", "17", "tooltip"));
-		cuadros.add(new Cuadro(4,"Performance Transporte Publico", "Velocidad promedio de buses", "54km/h", "tooltip"));
-		cuadros.add(new Cuadro(5,"Transporte Privado", "Tasa de motorización", "59%", "tooltip"));
-		cuadros.add(new Cuadro(6,"Transporte No Motorizado", "Kilómetros de ciclovías", "10,4km", "tooltip"));
-		cuadros.add(new Cuadro(7,"Seguridad Vial", "Fallecidos en el año 2017", "654", "tooltip"));
+		cuadros.add(new Cuadro(1,"Encuesta Origen Destino", "Viajes diarios en la región", "132k", "tooltip", "fas fa-user-check"));
+		cuadros.add(new Cuadro(2,"Demanda Transporte Publico", "Promedio de transbordos en Transantiago", "1,87", "tooltip", "fas fa-users"));
+		cuadros.add(new Cuadro(3,"Oferta Transporte Publico", "Distintos servicios de metro y buses en Santiago", "17", "tooltip", "fas fa-bus"));
+		cuadros.add(new Cuadro(4,"Performance Transporte Publico", "Velocidad promedio de buses", "54km/h", "tooltip", "fas fa-chart-bar"));
+		cuadros.add(new Cuadro(5,"Transporte Privado", "Tasa de motorización", "59%", "tooltip", "fas fa-car-alt"));
+		cuadros.add(new Cuadro(6,"Transporte No Motorizado", "Kilómetros de ciclovías", "10,4km", "tooltip", "fas fa-bicycle"));
+		cuadros.add(new Cuadro(7,"Seguridad Vial", "Fallecidos en el año 2017", "654", "tooltip", "fas fa-car-crash"));
 	}
 	
 	@GetMapping("/")
@@ -113,7 +112,9 @@ public class DashboardController {
     	Cuadro selected = cuadros.stream()
     			  .filter(cuadro -> idCuadro.equals(cuadro.getId().toString()))
     			  .findAny().get();
-        model.addAttribute("name", selected.getNombre());
+//        model.addAttribute("name", selected.getNombre());
+//        model.addAttribute("class", selected.getClass());
+        model.addAttribute("selected", selected);
 		model.addAttribute("regionSeleccionada", idRegion);
 //        valor que utilizo para seleccionar los graficos q se moestrarán
         model.addAttribute("graphs", "div.graph_"+idRegion+"_"+selected.getId());

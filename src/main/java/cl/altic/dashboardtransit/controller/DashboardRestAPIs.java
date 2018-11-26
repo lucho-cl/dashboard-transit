@@ -1,7 +1,13 @@
 package cl.altic.dashboardtransit.controller;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -32,6 +38,8 @@ public class DashboardRestAPIs {
 	private static final int REGION_INICIAL = 13;
 
 	private List<Region> regiones;
+	private List<Cuadro> cuadros;
+	private List<Cuadro> cuadrosFromDB = new ArrayList<Cuadro>();
 
 	@Autowired
 	private DatosComunesService datosComunesService;
@@ -47,12 +55,25 @@ public class DashboardRestAPIs {
 //		regiones.add(new Region(3, "Atacama"));
 		regiones.add(new Region(4, "Coquimbo"));
 		regiones.add(new Region(5, "Valparaíso"));
-		regiones.add(new Region(6, "Del Libertador General Bernardo O’Higgins"));
+		regiones.add(new Region(6, "O’Higgins"));
 		regiones.add(new Region(7, "Maule"));
 		regiones.add(new Region(8, "Bío Bío"));
 		regiones.add(new Region(9, "Araucanía"));
 		regiones.add(new Region(14, "Los Ríos"));
 		regiones.add(new Region(10, "Los Lagos"));
+		
+		getCuadros(REGION_INICIAL);
+	}
+
+	private void getCuadros(int region) throws IOException {
+		cuadros = new ArrayList<Cuadro>();
+		cuadros.add(new Cuadro(1, region, "Encuesta Origen Destino", "Viajes diarios en la región", "fas fa-user-check", existenGraficos(region,1)));
+		cuadros.add(new Cuadro(2, region, "Demanda Transporte Publico", "Promedio de transbordos en Transantiago", "fas fa-users", existenGraficos(region,2)));
+		cuadros.add(new Cuadro(3, region, "Oferta Transporte Publico", "Distintos servicios de metro y buses en Santiago", "fas fa-bus", existenGraficos(region,3)));
+		cuadros.add(new Cuadro(4, region, "Performance Transporte Publico", "Velocidad promedio de buses", "fas fa-chart-bar", existenGraficos(region,4)));
+		cuadros.add(new Cuadro(5, region, "Transporte Privado", "Tasa de motorización", "fas fa-car-alt", existenGraficos(region,5)));
+		cuadros.add(new Cuadro(6, region, "Transporte No Motorizado", "Kilómetros de ciclovías", "fas fa-bicycle", existenGraficos(region,6)));
+		cuadros.add(new Cuadro(7, region, "Seguridad Vial", "Fallecidos en el año 2017", "fas fa-car-crash", existenGraficos(region,7)));
 	}
 
 	@GetMapping(value ="/regiones")
@@ -74,7 +95,7 @@ public class DashboardRestAPIs {
 //	}
 	
 	@PostMapping(value = "/cuadros")
-	public  ResponseEntity<?> getCuadros(@Valid @RequestBody SearchCriteria search, Errors errors){
+	public  ResponseEntity<?> getCuadros(@Valid @RequestBody SearchCriteria search, Errors errors) throws IOException{
 
 		Integer idRegion;
 		if (null==search.getRegionSelect()) {
@@ -99,18 +120,65 @@ public class DashboardRestAPIs {
         }
 
 		Cuadro cuadro = new Cuadro();
-		List<Cuadro> cuadros = new ArrayList<Cuadro>();
-		cuadro.setRegion(idRegion);
-		cuadros = datosComunesService.getCuadrosByRegion(cuadro);
 		
-        if (cuadros.isEmpty()) {
-            result.setMsg("no regions found!");
+		getCuadros(idRegion);
+		cuadro.setRegion(idRegion);
+		cuadrosFromDB = datosComunesService.getCuadrosByRegion(cuadro);
+		
+        if (cuadrosFromDB.isEmpty()) {
+            result.setMsg("no se obtuvieron reportes de la base de datos");
         } else {
             result.setMsg("success");
         }
+//        result.setResult(cuadrosFromDB);
+//        cuadros.stream().forEach(c -> getInfoCuadro(c, cuadrosFromDB.stream().filter(cdb -> c.getId()==cdb.getId()).findAny().get()));
+        cuadros.stream().forEach(c -> getInfoCuadro(c, cuadrosFromDB));
         result.setResult(cuadros);
 
         return ResponseEntity.ok(result);
 		
+	}
+	
+
+//	private Cuadro getInfoCuadro(Cuadro c, Cuadro cuadro) {
+//		c.setNombre(cuadro.getNombre());
+//		c.setTexto(cuadro.getTexto());
+//		c.setTooltip(cuadro.getTooltip());
+//		c.setValor(cuadro.getValor());
+//		return c;
+//	}
+
+	private Object getInfoCuadro(Cuadro c, List<Cuadro> listaCuadros) {
+		try {
+			Cuadro cuadro = listaCuadros.stream().filter(cdb -> c.getId()==cdb.getId()).findAny().get();
+			c.setNombre(cuadro.getNombre());
+			c.setTexto(cuadro.getTexto());
+			c.setTooltip(cuadro.getTooltip());
+			c.setValor(cuadro.getValor());
+			
+		}catch (NoSuchElementException e) {
+			logger.debug("no hay info en la DB para el cuadro "+c.getId());
+		}
+		return null;
+	}
+
+	//	método para evaluar si determinado reporte tiene gráficos
+	private boolean existenGraficos(int idRegion, int idReporte) throws IOException {
+
+		Path path = Paths.get("src/main/resources/templates/graphs.html");
+
+		// BufferedReader reader = Files.newBufferedReader(path);
+		// String line = reader.readLine();
+		// assertEquals(expected_value, line);
+		try (Scanner scanner = new Scanner(path, StandardCharsets.UTF_8.name())) {
+			while (scanner.hasNextLine()) {
+				if(scanner.nextLine().contains("graph_"+idRegion+"_"+idReporte)) {
+					return true;
+				}
+				// process each line in some way
+				// log(scanner.nextLine());
+			}
+		}
+		return false;
 	}
 }

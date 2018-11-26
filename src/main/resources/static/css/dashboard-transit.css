@@ -19,6 +19,7 @@ div.content {
 /* 	width: 1444px; */
 	background-color: #267BE9;
 	margin-bottom: 00px; 
+	font-size: 10px;
 }
 .menu-uc-superior .nav li a{
   color: white !important;
@@ -34,7 +35,12 @@ div.content-tittle {
 	font-family: Montserrat;	
 /* 	letter-spacing: 4px;	 */
 /* 	line-height: 24px; */
-	background-color: #44255F;
+/* 	background-color: #44255F; */
+background-image: url(/img/fondo-home.png);
+}
+div.content-tittle .row {
+	padding-bottom: 60px;
+    padding-left: 60px;
 }
 div.content-tittle .sma{
 	font-size: 25px;
@@ -96,6 +102,11 @@ div.content-home .caja{
 	border-bottom: #580060;
     border-bottom-style: solid;
 }
+div.content-home .no-graph{
+	pointer-events:none;
+	background-color: #c0c0c0;
+	border-bottom: #c0c0c0;
+}
 div.content-home .caja .cuadro-1 section{
 /* 	font-size: 70px; */
 	color: #6D4F84;
@@ -113,6 +124,7 @@ div.content-home .caja .cuadro-2 section{
 }
 div.content-home .caja .cuadro-3 section{
 	padding: 20px 0px 20px 20px;
+	font-size: xx-large;
 }
 div.content-home .caja .cuadro-4 section{
 	color: #44255F;
@@ -135,7 +147,7 @@ div.content-home .caja a{
 /* 	background: #44255f; */
 	background: #44255F;
 	overflow-x: hidden;
-	padding: 8px 0;
+/* 	padding: 8px 0; */
 	color: #ffffff;
 }
 
@@ -174,6 +186,40 @@ div.content-home .caja a{
 }
 /* FIN SIDEBAR */
 /* DETALLES REPORTES */
+div.cabecera-detalle {
+	color: #3E3E3E;
+	font-family: "Trajan Pro";
+	font-size: 20px;
+	font-weight: 700;
+	letter-spacing: 5px;
+	line-height: 20px;
+	padding: 1rem;
+	margin: 0px -15px;
+	padding: 1rem;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+div.titulo-detalle {
+	color: #44255F;
+	font-family: Montserrat;
+	font-size: 30px;
+	font-weight: 700;
+	letter-spacing: 6px;
+	padding: 1rem;
+}
+div.titulo-detalle span:nth-of-type(1){
+	color: #E93F42;
+}
+
+div.texto-detalle {
+	color: #44255F;
+	font-family: Montserrat;
+	font-size: 14px;
+	letter-spacing: 2.8px;
+	line-height: 17px;
+	padding: 1rem;
+}
+
 div.cuadro-dato{
 	color: #580060;
 	background-color: #FFF;
@@ -212,20 +258,20 @@ div.cuadro-ayuda p{
 	margin: 0px;
 	padding: 15px;
 }
-/* div.cuadro-ayuda p:nth-of-type(1){ */
-/* 	color: #636A79; */
-/* 	font-size: 12px; */
-/* 	font-weight: 700; */
-/* 	letter-spacing: 2.4px; */
-/* 	line-height: 15px; */
-/* } */
 div.cuadro-ayuda p:nth-of-type(1){
+	color: #636A79;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 2.4px;
+	line-height: 15px;
+}
+div.cuadro-ayuda p:nth-of-type(2){
 	font-size: 15px;
 	font-weight: 700;
 	letter-spacing: 3px;
 	line-height: 18px;
 }
-div.cuadro-ayuda p:nth-of-type(2){
+div.cuadro-ayuda p:nth-of-type(3){
 	font-size: 12px;
 	letter-spacing: 1.5px;
 	line-height: 15px;
@@ -234,7 +280,7 @@ div.cuadro-ayuda p:nth-of-type(2){
 
 
 /* CONTENIDO FOOTER */
-footer.content-footer {{
+footer.content-footer {
 	color: #FFF;	
 	font-family: Montserrat;	
 	background-color: #44255F;

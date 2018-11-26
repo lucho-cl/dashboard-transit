@@ -57,7 +57,16 @@ function getReportes() {
 			$.each(data.result, function(i, cuadro) {
 				// armar cada cuadro/reporte
 				reportes += '<div class="col-sm-6">';
-				reportes += '<div class="caja">';
+				reportes += '<div class="caja';
+//				ver si debo deshabilitar
+				if(!cuadro.habilitado){
+					reportes += ' no-graph';
+				}
+				reportes += '">';
+				if(cuadro.habilitado){
+					reportes += '<a href="/detail?idCuadro=' + cuadro.id
+					+ '&idRegion=' + cuadro.region + '">';
+				}
 				reportes += '<div class="row" style="height: 60%;">';
 				reportes += '<div class="col cuadro-1">';
 				reportes += '<section>' + cuadro.valor + '</section>';
@@ -68,14 +77,16 @@ function getReportes() {
 				reportes += '</div>';
 				reportes += '<div class="row" style="height: 40%;">';
 				reportes += '<div class="col-2 cuadro-3">';
-				reportes += '<section>dibujo</section>';
+				reportes += '<section><span  class="'+cuadro.icono+'"></span></section>';
 				reportes += '</div>';
 				reportes += '<div class="col-10 cuadro-4">';
-				reportes += '<section> <a href="/detail?idCuadro=' + cuadro.id
-						+ '&idRegion=' + cuadro.region + '">Ver '
-						+ cuadro.nombre + '></a></section>';
+				reportes += '<section>VER '
+						+ cuadro.nombre + '></section>';
 				reportes += '</div>';
 				reportes += '</div>';
+				if(cuadro.habilitado){
+					reportes += '</a>';
+				}
 				reportes += '</div>';
 				reportes += '</div>';
 

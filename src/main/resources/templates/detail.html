@@ -21,14 +21,18 @@
 	crossorigin="anonymous">
 <link href="../static/css/dashboard-transit.css" rel="stylesheet"
 	th:href="@{/css/dashboard-transit.css}" />
-	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 
 <body>
 	<nav class="navbar menu-uc-superior fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">LOGO UC</a>
+<!-- 				<a class="navbar-brand" href="#"> -->
+<!-- 					<img th:src="@{/img/logo-uc.png}"/> -->
+<!-- 					LOGO UC -->
+<!-- 				</a> -->
 			</div>
 			<ul class="nav justify-content-end">
 				<li class="nav-item"><a class="nav-link" href="#">INGENIERIA</a></li>
@@ -44,33 +48,47 @@
 
 			<div class="sidebar-header">
 				<!-- 				<h3>LOGO UC</h3> -->
+				<img th:src="@{/img/logo-uc.png}" style="width: 100%"/>
 			</div>
 			<ul>
-				<li><input id="regionSeleccionada" type="hidden"
-					th:value="${regionSeleccionada}"> <select
-					class="form-control" id="regionSelect" name="regionSelect"></select>
+				<li>
+					<input id="regionSeleccionada" type="hidden"
+					th:value="${regionSeleccionada}"> 
+					<select class="form-control" id="regionSelect" name="regionSelect"></select>
 				</li>
 				<li>
-						<a th:href="@{/}"><span  class="fa fa-home"> </span>Inicio</a>
+						<a th:href="@{/}"><span  class="fa fa-home"> </span><span> Inicio</span></a>
 				</li>
-				<li th:each="cuadro, rowStat : ${cuadros}"><a
-					th:href="@{detail(idCuadro=${cuadro.id},idRegion=${regionSeleccionada})}"><span
-						th:text="${cuadro.nombre}"></span></a></li>
+				<li th:each="cuadro, rowStat : ${cuadros}">
+					<a th:href="@{detail(idCuadro=${cuadro.id},idRegion=${regionSeleccionada})}">
+						<span th:class="${cuadro.icono}"> </span>
+						<span th:text="${cuadro.nombre}"></span>
+					</a>
+				</li>
 			</ul>
 		</div>
 		<div class="content">
 			<!-- 			<div class="container"> -->
 <!-- 			<div class="row"> -->
-				<div class="page-header">
-					<h1>REPORTE DE MOVILIDAD</h1>
+<!-- 				<div class="page-header"> -->
+				<div class="cabecera-detalle">
+					<span>REPORTE DE MOVILIDAD</span>
 				</div>
 <!-- 			</div> -->
 <!-- 			<div class="row"> -->
-			<h3 th:text="${name}"></h3>
+			<div class="titulo-detalle">
+				<span th:class="${selected.icono}"> </span>
+				<span th:text="${selected.nombre}"></span>
+			</div>
+			<div class="texto-detalle">
+<!-- 				<span th:text="|div.texto_${selected.id}|"></span> -->
+				<span th:insert="graphs :: |div.texto_${selected.id}|"></span>
+			</div>
 			<!-- 				<p th:text="'Estás viendo ' + ${name}" /> -->
 			<!--   		<div th:insert="graphs :: #copy-section}"></div> -->
 <!-- 			</div> -->
 <!-- 			<div class="row"> -->
+			
 			<div
 				th:insert="graphs :: ${graphs}(help1=${help1},help2=${help2},help3=${help3},help4=${help4},help5=${help5})">
 			</div>

@@ -10,17 +10,31 @@ public class Cuadro {
 	private String tooltip;
 	private String baseValor;
 	private String queryValor;
+	private String icono;
+	private boolean habilitado;
 	
-	public Cuadro(int id, String nombre, String texto, String valor, String tooltip) {
+	public Cuadro(Integer id, Integer region, String nombre, String texto, String icono, boolean habilitado) {
+		super();
+		this.id = id;
+		this.region = region;
+		this.nombre = nombre;
+		this.texto = texto;
+		this.icono = icono;
+		this.habilitado = habilitado;
+		this.valor = "";
+		this.tooltip = "";
+	}
+	public Cuadro(int id, String nombre, String texto, String valor, String tooltip, String icono) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.texto = texto;
 		this.valor = valor;
 		this.tooltip = tooltip;
+		this.icono = icono;
 	}
 	public Cuadro(Integer id, Integer region, String nombre, String texto, String valor, String tooltip,
-			String baseValor, String queryValor) {
+			String baseValor, String queryValor, String icono) {
 		super();
 		this.id = id;
 		this.region = region;
@@ -30,6 +44,7 @@ public class Cuadro {
 		this.tooltip = tooltip;
 		this.baseValor = baseValor;
 		this.queryValor = queryValor;
+		this.icono = icono;
 	}
 	public Cuadro() {
 		super();
@@ -81,6 +96,18 @@ public class Cuadro {
 	}
 	public void setQueryValor(String queryValor) {
 		this.queryValor = queryValor;
+	}
+	public String getIcono() {
+		return icono;
+	}
+	public void setIcono(String icono) {
+		this.icono = icono;
+	}
+	public boolean isHabilitado() {
+		return habilitado;
+	}
+	public void setHabilitado(boolean habilitado) {
+		this.habilitado = habilitado;
 	}
 	
 	
