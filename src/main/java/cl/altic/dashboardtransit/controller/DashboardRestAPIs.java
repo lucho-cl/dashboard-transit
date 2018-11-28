@@ -1,13 +1,12 @@
 package cl.altic.dashboardtransit.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -126,9 +125,11 @@ public class DashboardRestAPIs {
 		cuadrosFromDB = datosComunesService.getCuadrosByRegion(cuadro);
 		
         if (cuadrosFromDB.isEmpty()) {
-            result.setMsg("no se obtuvieron reportes de la base de datos");
+            result.setMsg("No se obtuvieron reportes de la base de datos");
+            logger.debug("No se obtuvieron reportes de la base de datos");
         } else {
-            result.setMsg("success");
+            result.setMsg("Si se obtuvieron reportes de la base de datos");
+            logger.debug("Si se obtuvieron reportes de la base de datos");
         }
 //        result.setResult(cuadrosFromDB);
 //        cuadros.stream().forEach(c -> getInfoCuadro(c, cuadrosFromDB.stream().filter(cdb -> c.getId()==cdb.getId()).findAny().get()));
@@ -148,6 +149,12 @@ public class DashboardRestAPIs {
 //		return c;
 //	}
 
+	/**
+	 * método q hace el match de los reportes en duro con la información (si hay) obtenida de la base de datos para ellos
+	 * @param c
+	 * @param listaCuadros
+	 * @return
+	 */
 	private Object getInfoCuadro(Cuadro c, List<Cuadro> listaCuadros) {
 		try {
 			Cuadro cuadro = listaCuadros.stream().filter(cdb -> c.getId()==cdb.getId()).findAny().get();
@@ -162,9 +169,15 @@ public class DashboardRestAPIs {
 		return null;
 	}
 
-	//	método para evaluar si determinado reporte tiene gráficos
+	/**
+	 * 	método para evaluar si determinado reporte tiene gráficos y por lo tanto si se muestra habilitado o no
+	 * @param idRegion
+	 * @param idReporte
+	 * @return
+	 * @throws IOException
+	 */
 	private boolean existenGraficos(int idRegion, int idReporte) throws IOException {
-
+/*
 		Path path = Paths.get("src/main/resources/templates/graphs.html");
 
 		// BufferedReader reader = Files.newBufferedReader(path);
@@ -179,6 +192,16 @@ public class DashboardRestAPIs {
 				// log(scanner.nextLine());
 			}
 		}
+		*/
+        InputStream is = DashboardRestAPIs.class.getResourceAsStream("/templates/graphs.html");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        String line;
+        while ((line = reader.readLine()) != null) {
+        	if(line.contains("graph_"+idRegion+"_"+idReporte)) {
+				return true;
+			}
+//            System.out.println(line);
+        }
 		return false;
 	}
 }

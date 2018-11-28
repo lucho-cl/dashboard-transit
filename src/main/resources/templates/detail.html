@@ -60,10 +60,14 @@
 						<a th:href="@{/}"><span  class="fa fa-home"> </span><span> Inicio</span></a>
 				</li>
 				<li th:each="cuadro, rowStat : ${cuadros}">
-					<a th:href="@{detail(idCuadro=${cuadro.id},idRegion=${regionSeleccionada})}">
+					<a th:href="@{detail(idCuadro=${cuadro.id},idRegion=${regionSeleccionada})}" th:if="${cuadro.habilitado}">
 						<span th:class="${cuadro.icono}"> </span>
 						<span th:text="${cuadro.nombre}"></span>
 					</a>
+					<section th:if="${!cuadro.habilitado}">
+						<span th:class="${cuadro.icono}"> </span>
+						<span th:text="${cuadro.nombre}"></span>
+					</section>
 				</li>
 			</ul>
 		</div>

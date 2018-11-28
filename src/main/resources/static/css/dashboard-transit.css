@@ -35,7 +35,7 @@ div.content {
 /* CONTENIDO TITULO */
 div.content-tittle {
 	color: #FFF;	
-	font-family: Montserrat;	
+	font-family: Montserrat;
 /* 	letter-spacing: 4px;	 */
 /* 	line-height: 24px; */
 /* 	background-color: #44255F; */
@@ -142,6 +142,7 @@ div.content-home .caja a{
 .sidebar {
 	/*     min-width: 250px; */
 	/*     max-width: 250px; */
+	font-family: Montserrat;
 	width: 200px;
 	position: fixed;
 	z-index: 1;
@@ -176,6 +177,13 @@ div.content-home .caja a{
 	padding: 5px;
 	text-decoration: none;
 	color: white !important;
+}
+.sidebar li section {
+	display: block;
+	padding: 5px;
+	text-decoration: none;
+	color: white !important;
+	background-color: #c0c0c0;
 }
 
 .sidebar a.active {
@@ -227,6 +235,7 @@ div.cuadro-dato{
 	color: #580060;
 	background-color: #FFF;
 	margin-bottom: 15px;
+	font-family: Montserrat;
 }
 div.cuadro-dato p{
 	margin: 0px;
@@ -256,6 +265,7 @@ div.cuadro-ayuda{
 	color: #580060;
 	background-color: #FFF;
 	margin-bottom: 15px;
+	font-family: Montserrat;
 }
 div.cuadro-ayuda p{
 	margin: 0px;
