@@ -23,6 +23,7 @@
 	th:href="@{/css/dashboard-transit.css}" />
 <!-- 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 
 <body>
@@ -93,11 +94,63 @@
 <!-- 			</div> -->
 <!-- 			<div class="row"> -->
 			
-			<div
+			<div class="cuerpo-detalle"
 				th:insert="graphs :: ${graphs}(help1=${help1},help2=${help2},help3=${help3},help4=${help4},help5=${help5})">
 			</div>
 <!-- 			</div> -->
 			<!-- 			</div> -->
+			<div class="col-12">
+			<div class="text-right">
+			<button onclick="topFunction()" class="btn-go-top">
+				VOLVER ARRIBA 
+				<span class="fas fa-chevron-up"></span>
+				</button>
+			</div>
+			</div>
+			<div class="col-12">
+			<div class="row botones-navegacion">
+				<div class="col-6 btn-left">
+					<div class="row">
+						<div class="col-1"><span class="fas fa-arrow-left"></span></div>
+						<div class="col-11"><p class="text-right">VER DATOS ANTERIORES</p></div>
+					</div>
+				</div>
+				<div class="col-6 btn-right">
+					<div class="row">
+						<div class="col-11"><p class="text-left">VER DATOS SIGUIENTES</p></div>
+						<div class="col-1"><span class="fas fa-arrow-right"></span></div>
+					</div>
+				</div>
+			</div>
+			</div>
+	<footer class="container-fluid content-footer">
+	<div class="row">
+		<div class="col-4">
+			<p>¿TIENES UNA SUGERENCIA O SOLICITUD?</p>
+		</div>
+		<div class="col-4 rojo">
+			<div class="row">
+				<div class="col-6">
+					<p>CONTÁCTANOS</p>
+				</div>
+				<div class="col-6">
+					<p>BIBLIOGRAFÍA</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-4">
+			<div class="row">
+				<div class="col-6">
+					<img alt="" class="img-fluid" src="../img/Elementos-WEB-05.png">
+				</div>
+				<div class="col-6">
+					<img alt="" class="img-fluid" src="../img/BRT_Logo_Final_blanco_RGB.png">
+				</div>
+			</div>
+		</div>
+	</div>
+		
+	</footer>
 		</div>
 	</div>
 	<!-- Bootstrap core JavaScript

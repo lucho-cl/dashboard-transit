@@ -80,8 +80,10 @@ function getReportes() {
 				reportes += '<section><span  class="'+cuadro.icono+'"></span></section>';
 				reportes += '</div>';
 				reportes += '<div class="col-10 cuadro-4">';
-				reportes += '<section>VER '
-						+ cuadro.nombre + '></section>';
+				reportes += '<section>VER ';
+				reportes += cuadro.nombre;
+				reportes += '<span class="fas fa-chevron-right"></span>';
+				reportes += '</section>';
 				reportes += '</div>';
 				reportes += '</div>';
 				if(cuadro.habilitado){

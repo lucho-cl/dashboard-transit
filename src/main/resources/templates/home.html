@@ -23,6 +23,7 @@
 <link href="../static/css/dashboard-transit.css" rel="stylesheet"
 	th:href="@{/css/dashboard-transit.css}" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 
 <body>
@@ -49,7 +50,7 @@
 
 	<!-- TITULO -parte morada con fondo raro -->
 	<div class="container-fluid content-tittle">
-		<div class="row" style="padding-bottom: 60px;">
+		<div class="row" style="padding-bottom: 60px; margin-top: -30px;">
 			<img th:src="@{/img/logo-uc.png}"/>
 		</div>
 		<div class="row" style="padding-bottom: 60px;">
@@ -77,7 +78,7 @@
 
 			<div class="col-10">
 				<!-- 		<form role="form" id="sendRegion" th:action=@{/reportes} method="post"> -->
-				<div id="select" class="row">
+				<div id="select-home" class="row">
 					<div class="col-sm-12 caja-select">
 						<div class="row form-group">
 							<label for="regionSelect" class="col-8">Selecciona tu
@@ -121,7 +122,32 @@
 	</div>
 
 	<footer class="container-fluid content-footer">
-		<p>Footer Text</p>
+	<div class="row">
+		<div class="col-4">
+			<p>¿TIENES UNA SUGERENCIA O SOLICITUD?</p>
+		</div>
+		<div class="col-4 rojo">
+			<div class="row">
+				<div class="col-6">
+					<p>CONTÁCTANOS</p>
+				</div>
+				<div class="col-6">
+					<p>BIBLIOGRAFÍA</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-4">
+			<div class="row">
+				<div class="col-6">
+					<img alt="" class="img-fluid" src="../img/Elementos-WEB-05.png">
+				</div>
+				<div class="col-6">
+					<img alt="" class="img-fluid" src="../img/BRT_Logo_Final_blanco_RGB.png">
+				</div>
+			</div>
+		</div>
+	</div>
+		
 	</footer>
 </div>
 <div class="col-2"></div>
