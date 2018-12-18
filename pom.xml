@@ -5,7 +5,7 @@
 
 	<groupId>cl.altic</groupId>
 	<artifactId>dashboard-transit</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.2</version>
 	<packaging>jar</packaging>
 
 	<name>dashboard-transit</name>
@@ -65,7 +65,13 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.4</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

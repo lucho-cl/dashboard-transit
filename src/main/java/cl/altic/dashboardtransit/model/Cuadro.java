@@ -1,5 +1,11 @@
 package cl.altic.dashboardtransit.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+//@Builder
+@NoArgsConstructor
 public class Cuadro {
 
 	private Integer id;
@@ -12,6 +18,8 @@ public class Cuadro {
 	private String queryValor;
 	private String icono;
 	private boolean habilitado;
+	private String prev;
+	private String next;
 	
 	public Cuadro(Integer id, Integer region, String nombre, String texto, String icono, boolean habilitado) {
 		super();
@@ -46,69 +54,5 @@ public class Cuadro {
 		this.queryValor = queryValor;
 		this.icono = icono;
 	}
-	public Cuadro() {
-		super();
-	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public Integer getRegion() {
-		return region;
-	}
-	public void setRegion(Integer region) {
-		this.region = region;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getTexto() {
-		return texto;
-	}
-	public void setTexto(String texto) {
-		this.texto = texto;
-	}
-	public String getValor() {
-		return valor;
-	}
-	public void setValor(String valor) {
-		this.valor = valor;
-	}
-	public String getTooltip() {
-		return tooltip;
-	}
-	public void setTooltip(String tooltip) {
-		this.tooltip = tooltip;
-	}
-	public String getBaseValor() {
-		return baseValor;
-	}
-	public void setBaseValor(String baseValor) {
-		this.baseValor = baseValor;
-	}
-	public String getQueryValor() {
-		return queryValor;
-	}
-	public void setQueryValor(String queryValor) {
-		this.queryValor = queryValor;
-	}
-	public String getIcono() {
-		return icono;
-	}
-	public void setIcono(String icono) {
-		this.icono = icono;
-	}
-	public boolean isHabilitado() {
-		return habilitado;
-	}
-	public void setHabilitado(boolean habilitado) {
-		this.habilitado = habilitado;
-	}
-	
 	
 }

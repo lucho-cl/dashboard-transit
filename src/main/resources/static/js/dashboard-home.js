@@ -40,7 +40,7 @@ function getReportes() {
 	// alert("ahora si pos");
 	// }
 	var search = {}
-	search["regionSelect"] = $("#regionSelect").val();
+	search["valorBusqueda"] = $("#regionSelect").val();
 
 	$("#regionSelect").prop("disabled", true);
 

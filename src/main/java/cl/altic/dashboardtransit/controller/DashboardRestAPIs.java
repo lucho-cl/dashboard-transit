@@ -60,6 +60,8 @@ public class DashboardRestAPIs {
 		regiones.add(new Region(9, "Araucanía"));
 		regiones.add(new Region(14, "Los Ríos"));
 		regiones.add(new Region(10, "Los Lagos"));
+		regiones.add(new Region(11, "Aysén"));
+		regiones.add(new Region(12, "Magallanes"));
 		
 		getCuadros(REGION_INICIAL);
 	}
@@ -80,6 +82,11 @@ public class DashboardRestAPIs {
     	logger.info("Obteniendo regiones");
 		return regiones;
 	}
+	@PostMapping(value ="/regiones")
+	public List<Region> getRegiones(@Valid @RequestBody SearchCriteria search, Errors errors){
+		logger.info("Obteniendo regiones para reporte: "+search.getValorBusqueda());
+		return regiones;
+	}
 	
 //	@GetMapping(value = "/cuadros")
 //	public  List<Cuadro> getCuadros(@RequestParam(name="regionSelect", required=false) String regionSelect){
@@ -97,10 +104,10 @@ public class DashboardRestAPIs {
 	public  ResponseEntity<?> getCuadros(@Valid @RequestBody SearchCriteria search, Errors errors) throws IOException{
 
 		Integer idRegion;
-		if (null==search.getRegionSelect()) {
+		if (null==search.getValorBusqueda()) {
 			idRegion =REGION_INICIAL;
 		}else {
-			idRegion = Integer.parseInt(search.getRegionSelect());
+			idRegion = Integer.parseInt(search.getValorBusqueda());
 		}
     	logger.info("Obteniendo reportes de la region: "+idRegion);
 		

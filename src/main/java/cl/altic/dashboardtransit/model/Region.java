@@ -1,5 +1,11 @@
 package cl.altic.dashboardtransit.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+//@Builder
+@NoArgsConstructor
 public class Region {
 	
 	private int id;
@@ -9,23 +15,5 @@ public class Region {
 		super();
 		this.id = id;
 		this.nombre = nombre;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public boolean isEstado() {
-		return estado;
-	}
-	public void setEstado(boolean estado) {
-		this.estado = estado;
 	}
 }

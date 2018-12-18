@@ -14,6 +14,9 @@ div.content {
 /* 	height: 1000px; */
 	background-color: #EEF1F0;
 }
+select{
+	border-radius: 30px !important;
+}
 #wrapper{
 	margin-top: 25px;
 	display: flex;
@@ -114,6 +117,13 @@ div.content-home .caja{
 	border-bottom: #580060;
     border-bottom-style: solid;
 }
+div.content-home .caja:hover{
+	border-bottom: #E93F42;
+    border-bottom-style: solid;
+}
+div.content-home .caja:hover  .cuadro-3 section {
+	color: #E93F42 !important
+}
 div.content-home .no-graph{
 	pointer-events:none;
 	background-color: #c0c0c0;
@@ -165,6 +175,7 @@ div.content-home .caja a{
 /* 	background-color: #583971; */
 	background-color: #44255F;
 	color: #FFF;
+	font-weight: 700;
 }
 
 .sidebar-header {
@@ -176,8 +187,8 @@ div.content-home .caja a{
     padding: 0;
 }
 .sidebar ul li{
-    margin: 10px;
-    padding: 0px;
+/*     margin: 10px; */
+    padding: 0.4em;
 }
 
 .sidebar select{
@@ -195,12 +206,13 @@ div.content-home .caja a{
 	display: block;
 	padding: 5px;
 	text-decoration: none;
-	color: white !important;
-	background-color: #c0c0c0;
+/* 	color: white !important; */
+/* 	background-color: #c0c0c0; */
+	color: rgba(0,0,0,0.4);
 }
 
-.sidebar a.active {
-	background-color: #835ba5;
+.sidebar .active {
+	background-color: #583971;
 	/*   color: #ffffff; */
 }
 
@@ -242,6 +254,10 @@ div.texto-detalle {
 	letter-spacing: 2.8px;
 	line-height: 17px;
 	padding: 1rem;
+}
+
+div.cuadro-grafico {
+	margin-bottom: 2rem;
 }
 
 div.content .cuerpo-detalle{
@@ -332,7 +348,8 @@ div.botones-navegacion .btn-right{
 	line-height: 18px;
 	text-align: center;
 	background-color: #BDBDBD;
-	margin: 20px 0px; */
+	margin: 20px 0px;
+	border-radius: 30px !important;
 }
 
 /* CONTENIDO FOOTER */

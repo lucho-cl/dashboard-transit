@@ -21,36 +21,43 @@ $(document).ready(function() {
 
 
 			$('#regionSelect').change(function() {
-//				alert("ir al detalle del grafico 1 y region "+$("#regionSelect").val());
 //				ir al detalle de la region seleccionada con el reporte 1
 				change_detail($("#regionSelect").val(),1);
-//				getReportes();
 			});
 	function change_detail(idRegion, idReporte){
 		window.location.href = 'detail?idCuadro='+idReporte+'&idRegion='+idRegion;
 		
-//		var url = 'detail?idCuadro='+idReporte+'&idRegion='+idRegion
-//		$.get(url,function(data, status){
-//			console.log('${data}');
-//		});
-
-//		$.ajax({
-//			type : "GET",
-//			url : "detail",
-//			data : {
-//				'idCuadro' : idReporte
-//				,'idRegion': idRegion
-//			},
-//			success: function(result){
-//				alert("EXITO!");
-//				console.log(result);
-//			},
-//			error : function(e) {
-//				console.log("ERROR: ", e);
-//			}
-//		});
 	}
+	
+	$('#btn-left').click(function(e) {  
+//		alert("#btn-left");
+//        alert($("#regionSeleccionada").val());
+//        alert($("#reporteSeleccionado").val());
+//        alert($("#prevReporte").val());
+		if($("#prevReporte").val()=="home"){
+			window.location.href = '/';
+		}else{
+//			alert($("#prevReporte").val());
+			change_detail($("#regionSelect").val(),$("#prevReporte").val());
+		}
+    });
+	$('#btn-right').click(function(e) {  
+		if($("#nextReporte").val()=="home"){
+			window.location.href = '/';
+		}else{
+			change_detail($("#regionSelect").val(),$("#nextReporte").val());
+		}
+	});
 });
+
+$(function() {
+	if($("#prevReporte").val()=="home"){
+		$( "#btn-left p" ).text( "VOLVER AL HOME" );
+	}
+	if($("#nextReporte").val()=="home"){
+		$( "#btn-right p" ).text( "VOLVER AL HOME" );
+	}
+  });
 
 function topFunction() {
     document.body.scrollTop = 0; // For Safari

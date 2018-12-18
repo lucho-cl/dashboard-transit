@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
@@ -135,6 +136,7 @@ public class DashboardController {
     	Cuadro selected = cuadros.stream()
     			  .filter(cuadro -> idCuadro.equals(cuadro.getId().toString()))
     			  .findAny().get();
+    	getPreviousNext(selected);
         model.addAttribute("selected", selected);
 		model.addAttribute("regionSeleccionada", idRegion);
 //        valor que utilizo para seleccionar los fragmentos de los gráficos q se moestrarán
@@ -146,6 +148,38 @@ public class DashboardController {
 		}
         return "detail";
     }
+
+	private void getPreviousNext(Cuadro cuadro) {
+		int index = cuadros.indexOf(cuadro);
+		Optional<Cuadro> prev;
+		Optional<Cuadro> next;
+//		if(index == -1) {
+			//no existe, creo q esto no podría ocurrir, pero de todas formas lo dejaré
+//		}else if(index==0){//entonces existe
+			//estoy en el primer elemento
+			prev = cuadros.subList(0, index).stream()
+	    			  .filter(c -> c.isHabilitado())
+	    			  .findFirst();
+			next = cuadros.subList(index+1, cuadros.size()).stream()
+					.filter(c -> c.isHabilitado())
+					.findFirst();
+//		}else if(index==cuadros.size()-1) {
+			//estoy en el último elemento
+//		}
+			
+		if(prev.isPresent()) {
+		     cuadro.setPrev(prev.get().getId().toString());
+		 } else {
+			 //al home
+			 cuadro.setPrev("home");
+		 }
+		if(next.isPresent()) {
+			cuadro.setNext(next.get().getId().toString());
+		} else {
+			//al home
+			cuadro.setNext("home");
+		}
+	}
 
 	private void getCuadros(int region) throws IOException {
 		cuadros = new ArrayList<Cuadro>();
