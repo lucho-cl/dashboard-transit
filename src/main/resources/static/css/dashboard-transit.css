@@ -360,7 +360,10 @@ footer.content-footer {
 	background-color: #44255F;
 }
 footer.content-footer .rojo{
-	color: #F00;	
+	color: #F00;
+}
+footer.content-footer .rojo a{
+	color: inherit;
 }
 /* FIN CONTENIDO FOOTER */
 /*

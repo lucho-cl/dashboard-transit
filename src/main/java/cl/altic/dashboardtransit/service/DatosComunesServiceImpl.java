@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import cl.altic.dashboardtransit.dao.DatosComunesDao;
 import cl.altic.dashboardtransit.model.Cuadro;
+import cl.altic.dashboardtransit.model.Fuente;
 
 @Service
 public class DatosComunesServiceImpl implements DatosComunesService {
@@ -22,5 +23,10 @@ public class DatosComunesServiceImpl implements DatosComunesService {
 	@Override
 	public List<String> getTextosAyuda(int idRegion, int idVista) {
 		return datosComunesDao.getTextosAyuda(idRegion, idVista);
+	}
+
+	@Override
+	public List<Fuente> getBibliografia() {
+		return datosComunesDao.getBibliografia();
 	}
 }

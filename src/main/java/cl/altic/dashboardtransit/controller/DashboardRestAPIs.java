@@ -51,7 +51,7 @@ public class DashboardRestAPIs {
 		regiones.add(new Region(15, "Arica y Parinacota"));
 		regiones.add(new Region(1, "Tarapacá"));
 		regiones.add(new Region(2, "Antofagasta"));
-//		regiones.add(new Region(3, "Atacama"));
+		regiones.add(new Region(3, "Atacama"));
 		regiones.add(new Region(4, "Coquimbo"));
 		regiones.add(new Region(5, "Valparaíso"));
 		regiones.add(new Region(6, "O’Higgins"));

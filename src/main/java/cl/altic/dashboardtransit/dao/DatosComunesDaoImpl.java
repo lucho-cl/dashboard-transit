@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import cl.altic.dashboardtransit.mapper.BibliografiaRowMapper;
 import cl.altic.dashboardtransit.mapper.CuadroRowMapper;
 import cl.altic.dashboardtransit.mapper.CuadroSVRowMapper;
 import cl.altic.dashboardtransit.model.Cuadro;
+import cl.altic.dashboardtransit.model.Fuente;
 
 @Repository
 public class DatosComunesDaoImpl implements DatosComunesDao {
@@ -228,6 +230,28 @@ public class DatosComunesDaoImpl implements DatosComunesDao {
 			textos.add(valor);
 		}
 		return textos;
+	}
+
+	@Override
+	public List<Fuente> getBibliografia() {
+		List<Fuente> lista = null;
+		StringBuilder qry = new StringBuilder("select\r\n");
+		qry.append("	distinct(link_fuente),\r\n"); 
+		qry.append("	nombre_fuente\r\n");
+		qry.append("from\r\n");
+		qry.append("	public.fuentes_informacion\r\n");
+		qry.append("where\r\n");
+		qry.append("	link_fuente like 'http://%'");
+		qry.append("	or link_fuente like 'https://%'");
+//		qry.append("query_valor, texto_valor, texto_tooltip, ciudad_eod_gtfs ");
+//		qry.append("FROM public.datos_home ");
+//		qry.append("WHERE region_id = ? ");
+		// qry.append("AND vista_id = ? ");
+		qry.append(";");
+
+		lista = jdbcTemplate.query(qry.toString(), new BibliografiaRowMapper());
+
+		return lista;
 	}
 	
 }

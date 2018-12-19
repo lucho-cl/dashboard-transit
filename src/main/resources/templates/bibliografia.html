@@ -30,30 +30,13 @@
 	<nav class="navbar menu-uc-superior fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
-<!-- 				<a class="navbar-brand" href="#"> -->
-<!-- 					<img th:src="@{/img/logo-uc.png}"/> -->
-<!-- 					LOGO UC -->
-<!-- 				</a> -->
 			</div>
+			
 			<div th:replace="header :: links_header"> content here </div>
-<!-- 			<ul class="nav justify-content-end"> -->
-<!-- 				<li class="nav-item"><a class="nav-link" href="#">INGENIERIA</a></li> -->
-<!-- 				<li class="nav-item"><a class="nav-link" href="#">UNIVERSIDAD</a></li> -->
-<!-- 				<li class="nav-item"><a class="nav-link" href="#">PORTAL UC</a></li> -->
-<!-- 				<li class="nav-item"><a class="nav-link" href="#">CORREO</a></li> -->
-<!-- 			</ul> -->
 		</div>
 	</nav>
 
 	<div id="wrapper">
-					<input id="regionSeleccionada" type="hidden"
-					th:value="${regionSeleccionada}"> 
-					<input id="reporteSeleccionado" type="hidden"
-					th:value="${selected.id}"> 
-					<input id="prevReporte" type="hidden"
-					th:value="${selected.prev}"> 
-					<input id="nextReporte" type="hidden"
-					th:value="${selected.next}"> 
 		<div class="sidebar">
 
 			<div class="sidebar-header">
@@ -61,22 +44,22 @@
 				<img th:src="@{/img/logo-uc.png}" style="width: 100%"/>
 			</div>
 			<ul>
-				<li>
-					<select class="form-control" id="regionSelect" name="regionSelect"></select>
-				</li>
+<!-- 				<li> -->
+<!-- 					<select class="form-control" id="regionSelect" name="regionSelect"></select> -->
+<!-- 				</li> -->
 				<li>
 						<a th:href="@{/}"><span  class="fa fa-home"> </span><span> Inicio</span></a>
 				</li>
-				<li th:each="cuadro, rowStat : ${cuadros}" th:class="${selected.id}==${cuadro.id}?active">
-					<a th:href="@{detail(idCuadro=${cuadro.id},idRegion=${regionSeleccionada})}" th:if="${cuadro.habilitado}">
-						<span th:class="${cuadro.icono}"> </span>
-						<span th:text="${cuadro.nombre}"></span>
-					</a>
-					<section th:if="${!cuadro.habilitado}">
-						<span th:class="${cuadro.icono}"> </span>
-						<span th:text="${cuadro.nombre}"></span>
-					</section>
-				</li>
+<!-- 				<li th:each="cuadro, rowStat : ${cuadros}" th:class="${selected.id}==${cuadro.id}?active"> -->
+<!-- 					<a th:href="@{detail(idCuadro=${cuadro.id},idRegion=${regionSeleccionada})}" th:if="${cuadro.habilitado}"> -->
+<!-- 						<span th:class="${cuadro.icono}"> </span> -->
+<!-- 						<span th:text="${cuadro.nombre}"></span> -->
+<!-- 					</a> -->
+<!-- 					<section th:if="${!cuadro.habilitado}"> -->
+<!-- 						<span th:class="${cuadro.icono}"> </span> -->
+<!-- 						<span th:text="${cuadro.nombre}"></span> -->
+<!-- 					</section> -->
+<!-- 				</li> -->
 			</ul>
 		</div>
 		<div class="content">
@@ -89,51 +72,24 @@
 <!-- 			</div> -->
 <!-- 			<div class="row"> -->
 			<div class="titulo-detalle">
-				<span th:class="${selected.icono}"> </span>
-				<span th:text="${selected.nombre}"></span>
+				<span>Bibliografía</span>
 			</div>
 			<div class="texto-detalle">
 <!-- 				<span th:text="|div.texto_${selected.id}|"></span> -->
-				<span th:insert="~{graphs :: |div.texto_${selected.id}|} ?: _"></span>
-<!-- 				<div th:insert="~{common :: salutation} ?: _"> -->
-<!-- 					Welcome  -->
-<!-- 				</div> -->
+				<span>Encuentra todas las fuentes de información de nuestro reporte a continuación:</span>
 			</div>
 			<!-- 				<p th:text="'Estás viendo ' + ${name}" /> -->
 			<!--   		<div th:insert="graphs :: #copy-section}"></div> -->
 <!-- 			</div> -->
 <!-- 			<div class="row"> -->
 			
-			<div class="cuerpo-detalle"
-				th:insert="~{graphs :: ${graphs}(help1=${help1},help2=${help2},help3=${help3},help4=${help4},help5=${help5})} ?: _">
-				No hay gráficos
+			<div class="cuerpo-detalle">
+				<div th:each="fuente : ${bibliografia}">
+					<a th:href="${fuente.link}"><span th:text="${fuente.nombre}"></span></a>
+				</div>
 			</div>
 <!-- 			</div> -->
 			<!-- 			</div> -->
-			<div class="col-12">
-			<div class="text-right">
-			<button onclick="topFunction()" class="btn-go-top">
-				VOLVER ARRIBA 
-				<span class="fas fa-chevron-up"></span>
-				</button>
-			</div>
-			</div>
-			<div class="col-12">
-			<div class="row botones-navegacion">
-				<div class="col-6 btn-left" id="btn-left">
-					<div class="row">
-						<div class="col-1"><span class="fas fa-arrow-left"></span></div>
-						<div class="col-11"><p class="text-right">VER DATOS ANTERIORES</p></div>
-					</div>
-				</div>
-				<div class="col-6 btn-right" id="btn-right">
-					<div class="row">
-						<div class="col-11"><p class="text-left">VER DATOS SIGUIENTES</p></div>
-						<div class="col-1"><span class="fas fa-arrow-right"></span></div>
-					</div>
-				</div>
-			</div>
-			</div>
 	<footer class="container-fluid content-footer">
 	<div class="row">
 		<div class="col-4">
@@ -176,6 +132,6 @@
 		crossorigin="anonymous"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 
-	<script src="/js/dashboard-detail.js"></script>
+<!-- 	<script src="/js/dashboard-detail.js"></script> -->
 </body>
 </html>

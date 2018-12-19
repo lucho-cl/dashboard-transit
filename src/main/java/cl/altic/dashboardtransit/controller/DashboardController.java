@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import cl.altic.dashboardtransit.model.Cuadro;
+import cl.altic.dashboardtransit.model.Fuente;
 import cl.altic.dashboardtransit.model.Region;
 import cl.altic.dashboardtransit.service.DatosComunesService;
 
@@ -230,4 +231,17 @@ public class DashboardController {
 //		}
 //		return null;
 //	}
+	
+
+	@GetMapping("/bibliografia")
+	public String bibliografia(Model model) {
+//		List<Fuente> bibliografia = new ArrayList<Fuente>();
+//		bibliografia.add(Fuente.builder().id(1).nombre("Google").link("http://www.google.cl").build());
+		List<Fuente> bibliografia = datosComunesService.getBibliografia();
+		model.addAttribute("bibliografia", bibliografia);
+//		model.addAttribute("regionSeleccionada", cuadro.getRegion());
+//		model.addAttribute("regiones", regiones);
+//		model.addAttribute("cuadros", cuadros);
+		return "bibliografia";
+	}
 }
