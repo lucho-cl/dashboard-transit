@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+import javax.mail.MessagingException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,14 +17,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cl.altic.dashboardtransit.model.ContactoCommand;
 import cl.altic.dashboardtransit.model.Cuadro;
 import cl.altic.dashboardtransit.model.Fuente;
 import cl.altic.dashboardtransit.model.Region;
 import cl.altic.dashboardtransit.service.DatosComunesService;
+import cl.altic.dashboardtransit.service.SendMailService;
 
 @Controller
 public class DashboardController {
@@ -32,6 +37,8 @@ public class DashboardController {
 	private static final int REGION_INICIAL = 13;
 	@Autowired
 	private DatosComunesService datosComunesService;
+	@Autowired
+	private SendMailService sendMailService;
 	@Value("${spring.application.name}")
 	String appName;
 	
@@ -243,5 +250,40 @@ public class DashboardController {
 //		model.addAttribute("regiones", regiones);
 //		model.addAttribute("cuadros", cuadros);
 		return "bibliografia";
+	}
+	
+
+	@PostMapping("/contacto")
+	public String contactoSend(
+			@ModelAttribute("command") ContactoCommand command,
+			// WARN: BindingResult *must* immediately follow the Command.
+			// https://stackoverflow.com/a/29883178/1626026
+			BindingResult bindingResult,   
+			Model model
+//			,RedirectAttributes ra
+			) {
+		
+		logger.debug("form submission.");
+		
+		if ( bindingResult.hasErrors() ) {
+			return "contacto";
+		}
+		logger.info("ENVIANDO CORREO A: " +command.getNombre());
+
+		try {
+			sendMailService.sendMail(command);
+			model.addAttribute("resultado", "Mensaje enviado, pronto nos pondremos en contacto");
+		} catch (MessagingException e) {
+			model.addAttribute("resultado", "No se pudo enviar mensaje, intente nuevamente");
+//			e.printStackTrace();
+		}
+//		ra.addFlashAttribute("command", command);
+		
+		return "contacto-result";
+	}
+	@GetMapping("/contacto")
+	public String contacto(Model model) {
+        model.addAttribute("command", new ContactoCommand());
+		return "contacto";
 	}
 }

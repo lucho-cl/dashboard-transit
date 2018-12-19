@@ -362,10 +362,32 @@ footer.content-footer {
 footer.content-footer .rojo{
 	color: #F00;
 }
+.rojo{
+	color: #F00;
+}
 footer.content-footer .rojo a{
 	color: inherit;
 }
 /* FIN CONTENIDO FOOTER */
+
+.formulario-contacto {
+	color: #44255F;
+	font-family: Montserrat;
+	font-size: 15px;
+	letter-spacing: 0.13px;
+	line-height: 18px;
+}
+
+.btn-morado   {
+	color: #FFF;
+	font-family: Montserrat;
+	font-size: 15px;
+	letter-spacing: 3px;
+	line-height: 18px;
+	background-color: #44255F;
+	border: none;
+	padding: 10px;
+}
 /*
 .logo-uc {
 	height: 160px;

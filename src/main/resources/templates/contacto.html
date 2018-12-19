@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../../favicon.ico" />
+
+<title>Home</title>
+
+<!-- Bootstrap core CSS -->
+<!-- <link href="../static/css/bootstrap.css" rel="stylesheet" -->
+<!-- 	th:href="@{/css/bootstrap.css}" /> -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link href="../static/css/dashboard-transit.css" rel="stylesheet"
+	th:href="@{/css/dashboard-transit.css}" />
+<!-- 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+</head>
+
+<body>
+	<nav class="navbar menu-uc-superior fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+			</div>
+			
+			<div th:replace="header :: links_header"> content here </div>
+		</div>
+	</nav>
+
+	<div id="wrapper">
+		<div class="sidebar">
+
+			<div class="sidebar-header">
+				<!-- 				<h3>LOGO UC</h3> -->
+				<img th:src="@{/img/logo-uc.png}" style="width: 100%"/>
+			</div>
+			<ul>
+<!-- 				<li> -->
+<!-- 					<select class="form-control" id="regionSelect" name="regionSelect"></select> -->
+<!-- 				</li> -->
+				<li>
+						<a th:href="@{/}"><span  class="fa fa-home"> </span><span> Inicio</span></a>
+				</li>
+<!-- 				<li th:each="cuadro, rowStat : ${cuadros}" th:class="${selected.id}==${cuadro.id}?active"> -->
+<!-- 					<a th:href="@{detail(idCuadro=${cuadro.id},idRegion=${regionSeleccionada})}" th:if="${cuadro.habilitado}"> -->
+<!-- 						<span th:class="${cuadro.icono}"> </span> -->
+<!-- 						<span th:text="${cuadro.nombre}"></span> -->
+<!-- 					</a> -->
+<!-- 					<section th:if="${!cuadro.habilitado}"> -->
+<!-- 						<span th:class="${cuadro.icono}"> </span> -->
+<!-- 						<span th:text="${cuadro.nombre}"></span> -->
+<!-- 					</section> -->
+<!-- 				</li> -->
+			</ul>
+		</div>
+		<div class="content">
+			<!-- 			<div class="container"> -->
+<!-- 			<div class="row"> -->
+<!-- 				<div class="page-header"> -->
+				<div class="cabecera-detalle">
+					<span>REPORTE DE MOVILIDAD</span>
+				</div>
+<!-- 			</div> -->
+<!-- 			<div class="row"> -->
+			<div class="titulo-detalle">
+				<span>Contacto</span>
+			</div>
+			<div class="texto-detalle">
+<!-- 				<span th:text="|div.texto_${selected.id}|"></span> -->
+				Tienes alguna sugerencia para mejorar nuestro reporte, reportar algun problema o solicitar mas información? Llena el formulario a continuación o escribenos a 
+				<span class="rojo">contacto@uc.rdm.cl</span>
+			</div>
+			<!-- 				<p th:text="'Estás viendo ' + ${name}" /> -->
+			<!--   		<div th:insert="graphs :: #copy-section}"></div> -->
+<!-- 			</div> -->
+<!-- 			<div class="row"> -->
+			
+			<div class="cuerpo-detalle">
+				<form action="#" th:action="@{/contacto}" th:object="${command}" method="post" class="formulario-contacto">
+					<div class="form-group">
+						<label>Nombre: </label>
+						<input type="text" th:field="*{nombre}" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label>E-mail: </label>
+						<input type="text" th:field="*{email}" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label>Asunto: </label>
+						<input type="text" th:field="*{asunto}" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label>Mensaje: </label>
+						<textarea  type="text" th:field="*{mensaje}" class="form-control" ></textarea>
+					</div>
+					<div class="form-group text-right">
+						<input type="submit" value="ENVIAR" class="btn-morado"/>
+					</div>
+				</form>
+<!-- 				<div th:each="fuente : ${bibliografia}"> -->
+<!-- 					<a th:href="${fuente.link}"><span th:text="${fuente.nombre}"></span></a> -->
+<!-- 				</div> -->
+			</div>
+<!-- 			</div> -->
+			<!-- 			</div> -->
+	<footer class="container-fluid content-footer">
+	<div class="row">
+		<div class="col-4">
+			<p>¿TIENES UNA SUGERENCIA O SOLICITUD?</p>
+		</div>
+		<div class="col-4 rojo">
+			<div class="row">
+				<div class="col-6">
+					<a th:href="@{/contacto}">CONTÁCTANOS</a>
+				</div>
+				<div class="col-6">
+					<a th:href="@{/bibliografia}">BIBLIOGRAFÍA</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-4">
+			<div class="row">
+				<div class="col-6">
+					<img alt="" class="img-fluid" src="../img/Elementos-WEB-05.png">
+				</div>
+				<div class="col-6">
+					<img alt="" class="img-fluid" src="../img/BRT_Logo_Final_blanco_RGB.png">
+				</div>
+			</div>
+		</div>
+	</div>
+		
+	</footer>
+		</div>
+	</div>
+	<!-- Bootstrap core JavaScript
+================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
+<!-- 	<script src="/js/dashboard-detail.js"></script> -->
+</body>
+</html>
