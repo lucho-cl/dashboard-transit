@@ -72,8 +72,8 @@ public class SendMailServiceImpl implements SendMailService {
             MimeMessage msg = new MimeMessage(session);
             //Storing the comma seperated values to email addresses
 //            String to = contacto.getEmail();
-//            String to = "dashboard.transporte.uc@gmail.com";
-            String to = "luis.sepulveda.a@gmail.com,contacto@altic.cl";
+            String to = "dashboard.transporte.uc@gmail.com";
+//            String to = "luis.sepulveda.a@gmail.com,contacto@altic.cl";
             /*Parsing the String with defualt delimiter as a comma by marking the boolean as true and storing the email
             addresses in an array of InternetAddress objects*/
             InternetAddress[] address = InternetAddress.parse(to, true);

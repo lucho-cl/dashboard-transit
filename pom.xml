@@ -5,8 +5,7 @@
 
 	<groupId>cl.altic</groupId>
 	<artifactId>dashboard-transit</artifactId>
-	<version>1.0.2</version>
-	<packaging>jar</packaging>
+	<version>1.1.1</version>
 
 	<name>dashboard-transit</name>
 	<description>Demo project for Spring Boot</description>
@@ -73,7 +72,6 @@
 		<dependency>
 			<groupId>com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
-			<version>1.6.2</version>
 		</dependency>
 	</dependencies>
 

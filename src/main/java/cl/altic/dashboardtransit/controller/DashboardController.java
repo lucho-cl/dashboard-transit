@@ -167,7 +167,8 @@ public class DashboardController {
 			//estoy en el primer elemento
 			prev = cuadros.subList(0, index).stream()
 	    			  .filter(c -> c.isHabilitado())
-	    			  .findFirst();
+	    			  .reduce((first, second) -> second);
+//	    			  .findFirst();
 			next = cuadros.subList(index+1, cuadros.size()).stream()
 					.filter(c -> c.isHabilitado())
 					.findFirst();

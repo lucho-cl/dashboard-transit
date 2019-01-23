@@ -370,12 +370,16 @@ footer.content-footer .rojo a{
 }
 /* FIN CONTENIDO FOOTER */
 
+a{
+	color: #44255F;
+}
 .formulario-contacto {
 	color: #44255F;
 	font-family: Montserrat;
 	font-size: 15px;
 	letter-spacing: 0.13px;
 	line-height: 18px;
+	width: 70%;
 }
 
 .btn-morado   {
