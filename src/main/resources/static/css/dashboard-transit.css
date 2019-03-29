@@ -392,6 +392,29 @@ a{
 	border: none;
 	padding: 10px;
 }
+.tooltip {
+/*background:yellow !important;
+/*background-color:green !important;
+	color: red !important;
+  	/*border: 1px solid #FFF;
+  	/*box-sizing: border-box;
+
+  /*border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+.tooltip .tooltip-inner {
+	color: #FFF;
+  	background-color: rgba(136,19,147,0.52);
+	font-family: Montserrat;
+    font-size: 15px;
+    letter-spacing: 0.25px;
+    line-height: 18px;
+}
+
+.tooltip .arrow {
+  	background-color: rgba(136,19,147,0.52);
+}
+
 /*
 .logo-uc {
 	height: 160px;

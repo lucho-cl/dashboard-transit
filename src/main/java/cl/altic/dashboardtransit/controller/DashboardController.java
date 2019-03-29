@@ -1,16 +1,11 @@
 package cl.altic.dashboardtransit.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import javax.annotation.PostConstruct;
-import javax.mail.MessagingException;
-
+import cl.altic.dashboardtransit.model.ContactoCommand;
+import cl.altic.dashboardtransit.model.Cuadro;
+import cl.altic.dashboardtransit.model.Fuente;
+import cl.altic.dashboardtransit.model.Region;
+import cl.altic.dashboardtransit.service.DatosComunesService;
+import cl.altic.dashboardtransit.service.SendMailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +18,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import cl.altic.dashboardtransit.model.ContactoCommand;
-import cl.altic.dashboardtransit.model.Cuadro;
-import cl.altic.dashboardtransit.model.Fuente;
-import cl.altic.dashboardtransit.model.Region;
-import cl.altic.dashboardtransit.service.DatosComunesService;
-import cl.altic.dashboardtransit.service.SendMailService;
+import javax.annotation.PostConstruct;
+import javax.mail.MessagingException;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class DashboardController {

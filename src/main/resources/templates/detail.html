@@ -30,18 +30,8 @@
 	<nav class="navbar menu-uc-superior fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
-<!-- 				<a class="navbar-brand" href="#"> -->
-<!-- 					<img th:src="@{/img/logo-uc.png}"/> -->
-<!-- 					LOGO UC -->
-<!-- 				</a> -->
 			</div>
 			<div th:replace="header :: links_header"> content here </div>
-<!-- 			<ul class="nav justify-content-end"> -->
-<!-- 				<li class="nav-item"><a class="nav-link" href="#">INGENIERIA</a></li> -->
-<!-- 				<li class="nav-item"><a class="nav-link" href="#">UNIVERSIDAD</a></li> -->
-<!-- 				<li class="nav-item"><a class="nav-link" href="#">PORTAL UC</a></li> -->
-<!-- 				<li class="nav-item"><a class="nav-link" href="#">CORREO</a></li> -->
-<!-- 			</ul> -->
 		</div>
 	</nav>
 
@@ -57,7 +47,6 @@
 		<div class="sidebar">
 
 			<div class="sidebar-header">
-				<!-- 				<h3>LOGO UC</h3> -->
 				<img th:src="@{/img/logo-uc.png}" style="width: 100%"/>
 			</div>
 			<ul>
@@ -72,7 +61,7 @@
 						<span th:class="${cuadro.icono}"> </span>
 						<span th:text="${cuadro.nombre}"></span>
 					</a>
-					<section th:if="${!cuadro.habilitado}">
+					<section th:if="${!cuadro.habilitado}" data-toggle="tooltip" title="Vista no disponible para esta región">
 						<span th:class="${cuadro.icono}"> </span>
 						<span th:text="${cuadro.nombre}"></span>
 					</section>
@@ -80,14 +69,9 @@
 			</ul>
 		</div>
 		<div class="content">
-			<!-- 			<div class="container"> -->
-<!-- 			<div class="row"> -->
-<!-- 				<div class="page-header"> -->
 				<div class="cabecera-detalle">
 					<span>REPORTE DE MOVILIDAD</span>
 				</div>
-<!-- 			</div> -->
-<!-- 			<div class="row"> -->
 			<div class="titulo-detalle">
 				<span th:class="${selected.icono}"> </span>
 				<span th:text="${selected.nombre}"></span>
@@ -95,21 +79,11 @@
 			<div class="texto-detalle">
 <!-- 				<span th:text="|div.texto_${selected.id}|"></span> -->
 				<span th:insert="~{graphs :: |div.texto_${selected.id}|} ?: _"></span>
-<!-- 				<div th:insert="~{common :: salutation} ?: _"> -->
-<!-- 					Welcome  -->
-<!-- 				</div> -->
 			</div>
-			<!-- 				<p th:text="'Estás viendo ' + ${name}" /> -->
-			<!--   		<div th:insert="graphs :: #copy-section}"></div> -->
-<!-- 			</div> -->
-<!-- 			<div class="row"> -->
-			
 			<div class="cuerpo-detalle"
 				th:insert="~{graphs :: ${graphs}(help1=${help1},help2=${help2},help3=${help3},help4=${help4},help5=${help5})} ?: _">
 				No hay gráficos
 			</div>
-<!-- 			</div> -->
-			<!-- 			</div> -->
 			<div class="col-12">
 			<div class="text-right">
 			<button onclick="topFunction()" class="btn-go-top">
